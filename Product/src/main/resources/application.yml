@@ -1,0 +1,11 @@
+spring:
+  config:
+    import: optional:configserver:http://localhost:8888
+  application:
+    name: product-service
+logging:
+  level:
+    feign: DEBUG
+    root: INFO
+    org.springframework.security: DEBUG
+com.example.product.product.client: DEBUG
