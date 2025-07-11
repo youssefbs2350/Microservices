@@ -3,8 +3,7 @@ spring:
     name: orderservice
 
   datasource:
-    url: jdbc:mysql://localhost:3306/ordersdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
-
+    url:  jdbc:mysql://mysql:3306/ordersdb?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: root
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -50,3 +49,5 @@ springdoc:
     path: /v3/api-docs
   swagger-ui:
     path: /swagger-ui.html
+networks:
+  - microservices-net

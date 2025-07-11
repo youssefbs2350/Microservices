@@ -14,7 +14,7 @@ services:
     restart: unless-stopped
 
   kafka:
-    container_name: ms_kafka
+    container_name: kafka
     image: confluentinc/cp-kafka:7.5.0
     depends_on:
       - zookeeper
@@ -29,22 +29,6 @@ services:
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
-    networks:
-      - microservices-net
-    restart: unless-stopped
-
-
-  kafka-ui:
-    container_name: ms_kafka_ui
-    image: provectuslabs/kafka-ui:latest
-    depends_on:
-      - kafka
-    ports:
-      - "9092:8080"
-    environment:
-      KAFKA_CLUSTERS_0_NAME: local
-      KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:9092
-      KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
     networks:
       - microservices-net
     restart: unless-stopped

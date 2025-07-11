@@ -1,0 +1,16 @@
+
+services:
+  product:
+    build:
+      context: .
+    container_name: ms_product
+    ports:
+      - "8082:8082"
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    networks:
+      - microservices-net
+
+networks:
+  microservices-net:
+    driver: bridge
