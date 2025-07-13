@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @FeignClient(
         name = "order-service",
-        url = "http://localhost:8081",
+        url = "http://order-service:8081",
         fallback = OrderClientFallback.class
 )
 public interface OrderClient {

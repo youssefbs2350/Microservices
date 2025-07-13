@@ -1,0 +1,14 @@
+services:
+  config-server:
+    build:
+      context: .
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    networks:
+      - order-net
+
+networks:
+  order-net:
+    driver: bridge
+
