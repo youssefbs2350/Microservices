@@ -20,7 +20,8 @@ spring:
     openfeign:
       circuitbreaker:
         enabled: true
-
+    config:
+      import: optional:configserver:http://config-server:8888
   kafka:
     bootstrap-servers: kafka:29092
     consumer:
