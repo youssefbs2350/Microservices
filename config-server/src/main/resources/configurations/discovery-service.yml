@@ -1,5 +1,13 @@
-server:
-  port: 8761
+#server:
+  #port: 8761
+#eureka:
+  #instance:
+    #hostname: discovery-service
+  #client:
+    #register-with-eureka: false
+    #fetch-registry: false
+    #service-url:
+        #defaultZone: http://discovery-service:8761/eureka
 
 eureka:
   instance:
@@ -7,7 +15,8 @@ eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      #defaultZone: http://host.docker.internal:8761/eureka
-        defaultZone: http://discovery-service:8761/eureka
-    #defaultZone: http://${eureka.instance.hostname}/${server.port}/eureka/
+
+
+server:
+  port: 8761
+

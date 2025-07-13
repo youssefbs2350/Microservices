@@ -1,3 +1,6 @@
+server:
+  port: 8082
+
 spring:
   config:
     import: optional:configserver:http://config-server:8888
@@ -10,6 +13,8 @@ logging:
     root: INFO
     org.springframework.security: DEBUG
     com.example.product.product.client: DEBUG
+    com.netflix.discovery: DEBUG
+    com.netflix.eureka: DEBUG
 
 eureka:
   client:
@@ -18,3 +23,6 @@ eureka:
       defaultZone: http://discovery-service:8761/eureka
     register-with-eureka: true
     fetch-registry: true
+  instance:
+    prefer-ip-address: true
+    hostname: product-service

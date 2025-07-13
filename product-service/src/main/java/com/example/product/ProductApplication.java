@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableFeignClients
+@EnableDiscoveryClient
 
 public class ProductApplication {
 

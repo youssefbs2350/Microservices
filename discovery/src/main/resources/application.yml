@@ -6,21 +6,19 @@ spring:
     name: discovery-service
   config:
     import: optional:configserver:http://config-server:8888
-
 eureka:
-  instance:
-    hostname: discovery-service
   client:
     register-with-eureka: false
     fetch-registry: false
-    service-url:
-      defaultZone: http://discovery-service:8761/eureka # (optionnel ici car serveur unique)
-  server:
-    enable-self-preservation: false
-    wait-time-in-ms-when-sync-empty: 0
+#eureka:
+    #instance:
+    #hostname: discovery-service
+    #client:
+    #register-with-eureka: false
+    #fetch-registry: false
+      #service-url:
+    #defaultZone: http://discovery-service:8761/eureka # (optionnel ici car serveur unique)
+    #server:
+    #enable-self-preservation: false
+    #wait-time-in-ms-when-sync-empty: 0
 
- # spring:
-  #  config:
-   #   import: optional:configserver:http://config-server:8888
-  #  application:
-    #  name: discovery-service
