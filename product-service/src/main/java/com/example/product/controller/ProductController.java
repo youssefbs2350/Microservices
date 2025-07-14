@@ -33,12 +33,14 @@ public class ProductController {
 
     @PostMapping
     public ProductDTO createProduct(@RequestBody ProductDTO productDTO) {
+        productDTO.setId(null);  // forcer null pour création
         Product product = modelMapper.map(productDTO, Product.class);
         Product savedProduct = productService.save(product);
         ProductDTO savedProductDTO = modelMapper.map(savedProduct, ProductDTO.class);
-        productEventProducer.sendProductCreatedEvent(savedProductDTO); // Envoi de l'événement Kafka
+        productEventProducer.sendProductCreatedEvent(savedProductDTO);
         return savedProductDTO;
     }
+
 
     @GetMapping
     public List<ProductDTO> getAllProducts() {

@@ -13,21 +13,28 @@ services:
       SPRING_CLOUD_CONFIG_URI: http://config-server:8888
       SPRING_APPLICATION_JSON: >
         {
-          "eureka": {
-            "client": {
-              "service-url": {
-                "defaultZone": "http://discovery-service:8761/eureka"
-              },
-              "register-with-eureka": true,
-              "fetch-registry": true
+          "spring": {
+            "data": {
+              "mongodb": {
+                "uri": "mongodb://root:root@ms_mongo_db:27017/productdb?authSource=admin"
+              }
             },
-            "instance": {
-              "prefer-ip-address": true,
-              "hostname": "product-service"
+            "eureka": {
+              "client": {
+                "service-url": {
+                  "defaultZone": "http://discovery-service:8761/eureka"
+                },
+                "register-with-eureka": true,
+                "fetch-registry": true
+              },
+              "instance": {
+                "prefer-ip-address": true,
+                "hostname": "product-service"
+              }
+            },
+            "kafka": {
+              "bootstrap-servers": "kafka:9092"
             }
-          },
-          "kafka": {
-            "bootstrap-servers": "kafka:9092"
           }
         }
     networks:
@@ -35,5 +42,5 @@ services:
 
 networks:
   order-net:
-    driver: bridge
     external: true
+
