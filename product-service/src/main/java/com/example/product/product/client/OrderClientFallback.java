@@ -1,14 +1,14 @@
 package com.example.product.product.client;
 
-import com.example.product.dto.OrderDTO;
+import com.example.product.dto.ProductDTO;
 import org.springframework.stereotype.Component;
 
 @Component
 public class OrderClientFallback implements OrderClient {
 
     @Override
-    public OrderDTO getOrderById(Long id) {
-        OrderDTO fallback = new OrderDTO();
+    public ProductDTO getOrderById(Long id) {
+        ProductDTO fallback = new ProductDTO();
         fallback.setId(String.valueOf(id));
         fallback.setName("Unavailable Order");
         fallback.setDescription("Order service is currently unavailable.");

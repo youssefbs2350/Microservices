@@ -7,14 +7,14 @@ import org.springframework.stereotype.Service;
 public class ProductEventConsumer {
 
     @KafkaListener(topics = "product-created-topic", groupId = "order-group", containerFactory = "productKafkaListenerFactory")
-    public void consume(ProductDTO product) {
+    public void consume(OrderDTO product) {
         System.out.println("📩 Produit reçu depuis Kafka :");
         System.out.println("🆔 ID : " + product.getId());
         System.out.println("🛒 Nom : " + product.getName());
         System.out.println("💵 Prix : " + product.getPrice());
     }
     @KafkaListener(topics = "product.updated-topic", groupId = "order-group", containerFactory = "productKafkaListenerFactory")
-    public void consumeUpdate(ProductDTO product) {
+    public void consumeUpdate(OrderDTO product) {
         System.out.println("📩 Produit mis à jour reçu depuis Kafka :");
         System.out.println("🆔 ID : " + product.getId());
         System.out.println("🛒 Nom : " + product.getName());

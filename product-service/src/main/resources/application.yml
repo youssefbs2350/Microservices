@@ -2,24 +2,44 @@ server:
   port: 8082
 
 spring:
-  config:
-    import: optional:configserver:http://config-server:8888
   application:
     name: product-service
 
+  config:
+    import: optional:configserver:http://config-server:8888
+
+  data:
+    mongodb:
+      host: mongodb
+      port: 27017
+      username: root
+      password: root
+      authentication-database: admin
+      database: product_db
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      group-id: product-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+
 logging:
   level:
-    feign: DEBUG
     root: INFO
-    org.springframework.security: DEBUG
-    com.example.product.product.client: DEBUG
-    com.netflix.discovery: DEBUG
-    com.netflix.eureka: DEBUG
+    com.example.product: DEBUG
+    org.springframework.kafka: DEBUG
+    org.apache.kafka: WARN
 
 eureka:
   client:
     service-url:
-      #defaultZone: http://host.docker.internal:8761/eureka
       defaultZone: http://discovery-service:8761/eureka
     register-with-eureka: true
     fetch-registry: true

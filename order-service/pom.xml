@@ -72,11 +72,11 @@
 			<scope>runtime</scope>
 		</dependency>
 		<!-- Pour Maven -->
-		<dependency>
+		<!--<dependency>
 			<groupId>com.sun.jersey</groupId>
 			<artifactId>jersey-client</artifactId>
 			<version>1.19.4</version>
-		</dependency>
+		</dependency>-->
 
 		<dependency>
 			<groupId>org.projectlombok</groupId>

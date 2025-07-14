@@ -1,6 +1,6 @@
 package com.example.product.service;
 
-import com.example.product.dto.OrderDTO;
+import com.example.product.dto.ProductDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.core.KafkaTemplate;
@@ -19,20 +19,20 @@ public class ProductEventProducer {
     private String productDeletedTopic;
 
     @Autowired
-    private KafkaTemplate<String, OrderDTO> kafkaTemplate;
+    private KafkaTemplate<String, ProductDTO> kafkaTemplate;
 
-    public void sendProductCreatedEvent(OrderDTO product) {
+    public void sendProductCreatedEvent(ProductDTO product) {
         kafkaTemplate.send(productCreatedTopic, product);
         System.out.println("✅ Sent product created event for product ID: " + product.getId());
     }
 
-    public void sendProductUpdatedEvent(OrderDTO product) {
+    public void sendProductUpdatedEvent(ProductDTO product) {
         kafkaTemplate.send(productUpdatedTopic, product);
         System.out.println("✅ Sent product updated event for product ID: " + product.getId());
     }
 
     public void sendProductDeletedEvent(String productId) {
-        OrderDTO product = new OrderDTO();
+        ProductDTO product = new ProductDTO();
         product.setId(productId);
         kafkaTemplate.send(productDeletedTopic, productId, product);
         System.out.println("✅ Sent product deleted event for product ID: " + productId);

@@ -6,7 +6,7 @@ public class OrderResponseDTO {
     private int quantity;
     private double price;
     private String customerName;
-    private ProductDTO product;
+    private OrderDTO product;
 
     // Getters and Setters
     public Long getId() { return id; }
@@ -19,6 +19,6 @@ public class OrderResponseDTO {
     public void setPrice(double price) { this.price = price; }
     public String getCustomerName() { return customerName; }
     public void setCustomerName(String customerName) { this.customerName = customerName; }
-    public ProductDTO getProduct() { return product; }
-    public void setProduct(ProductDTO product) { this.product = product; }
+    public OrderDTO getProduct() { return product; }
+    public void setProduct(OrderDTO product) { this.product = product; }
 }

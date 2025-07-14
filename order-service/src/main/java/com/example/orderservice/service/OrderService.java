@@ -2,7 +2,7 @@ package com.example.orderservice.service;
 
 import com.example.orderservice.client.ProductClient;
 import com.example.orderservice.dto.OrderResponseDTO;
-import com.example.orderservice.dto.ProductDTO;
+import com.example.orderservice.dto.OrderDTO;
 import com.example.orderservice.entity.Order;
 import com.example.orderservice.repository.OrderRepository;
 import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
@@ -36,7 +36,7 @@ public class OrderService {
     @CircuitBreaker(name = PRODUCT_SERVICE, fallbackMethod = "fallbackProduct")
     public OrderResponseDTO createOrder(String productId, String customerName, int quantity) {
 
-        ProductDTO product = productClient.getProductById(productId);
+        OrderDTO product = productClient.getProductById(productId);
 
         Order order = new Order();
         order.setProductId(productId);
@@ -60,7 +60,7 @@ public class OrderService {
     public OrderResponseDTO fallbackProduct(String productId, String customerName, int quantity, Throwable throwable) {
         System.err.println("⚠️ Fallback triggered for productId: " + productId + " - Reason: " + throwable.getMessage());
 
-        ProductDTO product = new ProductDTO(productId, "Unavailable Product", "This product is currently unavailable.", 0.0);
+        OrderDTO product = new OrderDTO(productId, "Unavailable Product", "This product is currently unavailable.", 0.0);
 
         Order order = new Order();
         order.setProductId(productId);

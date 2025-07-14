@@ -38,9 +38,9 @@ spring:
         replication:
           factor: 1
 
-feign:
-  hystrix:
-    enabled: true
+#feign:
+  #hystrix:
+    #enabled: true
 
 server:
   port: 8081

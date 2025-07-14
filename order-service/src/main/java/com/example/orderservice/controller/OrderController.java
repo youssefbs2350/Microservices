@@ -2,7 +2,7 @@ package com.example.orderservice.controller;
 
 import com.example.orderservice.client.ProductClient;
 import com.example.orderservice.dto.OrderResponseDTO;
-import com.example.orderservice.dto.ProductDTO;
+import com.example.orderservice.dto.OrderDTO;
 import com.example.orderservice.entity.Order;
 import com.example.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,11 +44,11 @@ public class OrderController {
 
 
     @GetMapping("/test-product/{id}")
-    public ProductDTO testProductFeign(@PathVariable String id) {
+    public OrderDTO testProductFeign(@PathVariable String id) {
         return productClient.getProductById(id);
     }
     @GetMapping("/test-product-fallback/{id}")
-    public ProductDTO testProductFeignFallback(@PathVariable String id) {
+    public OrderDTO testProductFeignFallback(@PathVariable String id) {
         return productClient.getProductById(id);
     }
     @PutMapping("/{id}")
