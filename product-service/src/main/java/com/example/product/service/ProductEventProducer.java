@@ -18,16 +18,20 @@ public class ProductEventProducer {
     @Value("${kafka.topic.product.deleted:product-deleted-topic}")
     private String productDeletedTopic;
 
+    private final KafkaTemplate<String, ProductDTO> kafkaTemplate;
+
     @Autowired
-    private KafkaTemplate<String, ProductDTO> kafkaTemplate;
+    public ProductEventProducer(KafkaTemplate<String, ProductDTO> kafkaTemplate) {
+        this.kafkaTemplate = kafkaTemplate;
+    }
 
     public void sendProductCreatedEvent(ProductDTO product) {
-        kafkaTemplate.send(productCreatedTopic, product);
+        kafkaTemplate.send(productCreatedTopic, product.getId(), product);
         System.out.println("✅ Sent product created event for product ID: " + product.getId());
     }
 
     public void sendProductUpdatedEvent(ProductDTO product) {
-        kafkaTemplate.send(productUpdatedTopic, product);
+        kafkaTemplate.send(productUpdatedTopic, product.getId(), product);
         System.out.println("✅ Sent product updated event for product ID: " + product.getId());
     }
 
@@ -38,4 +42,3 @@ public class ProductEventProducer {
         System.out.println("✅ Sent product deleted event for product ID: " + productId);
     }
 }
-
