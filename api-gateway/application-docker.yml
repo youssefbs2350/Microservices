@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  api-gateway:
+    image: api-gateway:latest
+    container_name: api-gateway
+    build:
+      context: .                # <- dossier où se trouve ton Dockerfile
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - order-net
+
+networks:
+  order-net:
+    driver: bridge
